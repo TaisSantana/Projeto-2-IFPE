@@ -62,9 +62,7 @@
     </nav>
 </section>
 
-<section class="form5 cid-sBLGMTMP1O" id="form5-c">
-    
-    
+<section class="form5" id="form5-c">
     <div class="container">
         <div class="mbr-section-head">
             <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
@@ -72,8 +70,8 @@
             
         </div>
         <div class="row justify-content-center mt-4">
-            <div class="col-lg-8 mx-auto mbr-form" data-form-type="formoid">
-                <form action="/precadastroAluno" method="POST" class="mbr-form form-with-styler" data-form-title="Form Name"><input type="hidden" name="email" data-form-email="true" value="wGiHlB6jNMKZjLu26abg+VQdxF6SnWvMp2hjt81Fmpee1Xjhkp6ub0+NiKPE5GGFDYKnbG2p6hm+0/nLHtw/zWcYKjiWkszWr99+7HcqvWwa2N/W4Pon6DQvdKZnlwkI">
+            <div class="col-lg-8 mx-auto mbr-form">
+                <form action="/precadastroAluno" method="post">
                     <div class="row">
                         <div hidden="hidden" data-form-alert="" class="alert alert-success col-12">Thanks for filling out
                             the form!</div>
@@ -88,16 +86,16 @@
                             <input type="email" name="email" placeholder="E-mail/celular" data-form-field="email" class="form-control" value="" id="email-form5-c">
                         </div>
                         <div class="col-md-6 col-sm-12 form-group" data-for="telefone">
-                            <input type="text" name="telefone" placeholder="Telefone" data-form-field="telefone" class="form-control" value="" id="name-form5-c">
+                            <input type="text" name="telefone" placeholder="Telefone" maxlength="10" data-form-field="telefone" class="form-control" value="" id="name-form5-c">
                         </div>
                         <div class="col-md-6 col-sm-12 form-group" data-for="cpf">
-                            <input type="text" name="cpf" placeholder="CPF" data-form-field="cpf" class="form-control" value="" id="email-form5-c">
-                        </div>
-                        <div class="col-12 form-group" data-for="url">
-                            <input type="url" name="url" placeholder="senha" data-form-field="url" class="form-control" value="" id="url-form5-c">
+                            <input type="text" name="cpf" placeholder="CPF" maxlength="11" data-form-field="cpf" class="form-control" value="" id="email-form5-c">
                         </div>
                         <div class="col-12 form-group" data-for="textarea">
-                            <textarea name="textarea" placeholder="confirmar senha" data-form-field="textarea" class="form-control" id="textarea-form5-c"></textarea>
+                            <input type="text" name="senha" placeholder="Senha" data-form-field="text" class="form-control" id="url-form5-c">
+                        </div>
+                        <div class="col-12 form-group" data-for="textarea">
+                            <textarea placeholder="Confirmar senha" data-form-field="textarea" class="form-control" id="textarea-form5-c"></textarea>
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12 align-center mbr-section-btn"><button type="submit" class="btn btn-primary display-4">Enviar</button></div>
                     </div>
