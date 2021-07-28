@@ -2,9 +2,14 @@ package br.ifpe.pp2.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import br.ifpe.pp2.classe.Aluno;
+import br.ifpe.pp2.dao.AlunoDAO;
 
 @Controller
 public class AlunoController {
+	//AlunoDAO alunoDAO = new AlunoDAO();
 	
 	@GetMapping("/")
 	private String exibirPgPrincipal() {
@@ -13,12 +18,12 @@ public class AlunoController {
 	
 	@GetMapping("/pre")
 	private String exibirPreMatricula() {
-		return "page3";
+		return "prematricula";
 	}
 	
 	@GetMapping("/login")
 	private String exibirLogin() {
-		return "page2";
+		return "login";
 	}
 	
 	@GetMapping("/sobre")
@@ -26,4 +31,8 @@ public class AlunoController {
 		return "sobre";
 	}
 
+	@PostMapping("/precadastroAluno")
+	private String precadastroAluno(Aluno aluno) {
+		return "index";
+	}
 }

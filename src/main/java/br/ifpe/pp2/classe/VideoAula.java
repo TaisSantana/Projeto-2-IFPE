@@ -1,10 +1,14 @@
 package br.ifpe.pp2.classe;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class VideoAula {
@@ -15,10 +19,9 @@ public class VideoAula {
 	private String nome;
 	private String arquivo;
 	
-	@ManyToOne
-	private Professor professor;
-	@ManyToOne
-	private Aluno aluno;
+	@OneToMany
+	private List<Professor> professor;
+
 	public int getId() {
 		return id;
 	}
@@ -37,17 +40,12 @@ public class VideoAula {
 	public void setArquivo(String arquivo) {
 		this.arquivo = arquivo;
 	}
-	public Professor getProfessor() {
+	public List<Professor> getProfessor() {
 		return professor;
 	}
-	public void setProfessor(Professor professor) {
+	public void setProfessor(List<Professor> professor) {
 		this.professor = professor;
 	}
-	public Aluno getAluno() {
-		return aluno;
-	}
-	public void setAluno(Aluno aluno) {
-		this.aluno = aluno;
-	}
+	
 	
 }

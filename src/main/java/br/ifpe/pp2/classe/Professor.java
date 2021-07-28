@@ -22,6 +22,7 @@ public class Professor {
 	private Endereco endereco;
 	@Column(length=10)
 	private String telefone;
+	private Integer perfil;
 	
 	public Integer getId() {
 		return id;
@@ -70,6 +71,12 @@ public class Professor {
 	}
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
+	}
+	public Integer getPerfil() {
+		return perfil;
+	}
+	public void setPerfil(Integer perfil) {
+		this.perfil = perfil;
 	}
 	
 }
