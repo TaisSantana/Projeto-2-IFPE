@@ -1,10 +1,15 @@
 package br.ifpe.pp2.classe;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class AulaPratica {
@@ -12,8 +17,11 @@ public class AulaPratica {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
-	private String data;
-	private String hora;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private LocalDate data;
+	@DateTimeFormat(pattern="HH:mm:ss")
+	private LocalTime hora;
+	
 	@ManyToOne
 	private Professor professor;
 	@ManyToOne
@@ -25,16 +33,16 @@ public class AulaPratica {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getData() {
+	public LocalDate getData() {
 		return data;
 	}
-	public void setData(String data) {
+	public void setData(LocalDate data) {
 		this.data = data;
 	}
-	public String getHora() {
+	public LocalTime getHora() {
 		return hora;
 	}
-	public void setHora(String hora) {
+	public void setHora(LocalTime hora) {
 		this.hora = hora;
 	}
 	public Professor getProfessor() {
@@ -49,5 +57,6 @@ public class AulaPratica {
 	public void setAluno(Aluno aluno) {
 		this.aluno = aluno;
 	}
+	
 	
 }

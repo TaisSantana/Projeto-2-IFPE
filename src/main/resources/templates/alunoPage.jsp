@@ -70,7 +70,7 @@
                 <div class="card-wrapper">
                     <div class="card-box align-left">
                         <h4 class="card-title mbr-fonts-style mb-4 display-2">
-                            <strong>Bem vindo Aluno!</strong></h4>
+                            <strong>Bem vindo, Aluno ${usuarioLogado.nome}!</strong></h4>
                         <p class="mbr-text mbr-fonts-style mb-4 display-7">
                             Escolha uma das opções ao lado&nbsp;</p>
                         <div class="mbr-section-btn"><a class="btn btn-primary display-4" href="page8.html">Meu Perfil</a></div>

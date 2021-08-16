@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
 <html  >
 <head>
   <!-- Site made with Mobirise Website Builder v5.3.10, https://mobirise.com -->
@@ -80,25 +81,32 @@
                     </div>
                     <div class="dragArea row">
                         <div class="col-md-6 col-sm-12 form-group" data-for="name">
-                            <input type="text" name="nome" placeholder="Nome completo" data-form-field="name" class="form-control" value="" id="name-form5-c">
+                            <input type="text" name="nome" placeholder="Nome completo" data-form-field="name" class="form-control" value="" id="name-form5-c" required>
                         </div>
                         <div class="col-md-6 col-sm-12 form-group" data-for="email">
-                            <input type="email" name="email" placeholder="E-mail/celular" data-form-field="email" class="form-control" value="" id="email-form5-c">
+                            <input type="email" name="email" placeholder="E-mail/celular" data-form-field="email" class="form-control" value="" id="email-form5-c" required>
                         </div>
                         <div class="col-md-6 col-sm-12 form-group" data-for="telefone">
-                            <input type="text" name="telefone" placeholder="Telefone" maxlength="10" data-form-field="telefone" class="form-control" value="" id="name-form5-c">
+                            <input type="text" name="telefone" placeholder="Telefone" maxlength="10" data-form-field="telefone" class="form-control" value="" id="name-form5-c" required>
                         </div>
                         <div class="col-md-6 col-sm-12 form-group" data-for="cpf">
-                            <input type="text" name="cpf" placeholder="CPF" maxlength="11" data-form-field="cpf" class="form-control" value="" id="email-form5-c">
+                            <input type="text" name="cpf" placeholder="CPF" maxlength="11" data-form-field="cpf" class="form-control" value="" id="email-form5-c" required>
                         </div>
                         <div class="col-12 form-group" data-for="textarea">
-                            <input type="text" name="senha" placeholder="Senha" data-form-field="text" class="form-control" id="url-form5-c">
+                            <input type="text" name="senha" placeholder="Senha" data-form-field="text" class="form-control" id="url-form5-c" required>
                         </div>
                         <div class="col-12 form-group" data-for="textarea">
-                            <textarea placeholder="Confirmar senha" data-form-field="textarea" class="form-control" id="textarea-form5-c"></textarea>
+                            <textarea placeholder="Confirmar senha" data-form-field="textarea" class="form-control" id="textarea-form5-c" required></textarea>
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12 align-center mbr-section-btn"><button type="submit" class="btn btn-primary display-4">Enviar</button></div>
                     </div>
+                    
+                    <div th: if="${#fields.hasErrors('*')}">
+                    	<ul>
+                    		<li th:each="error : ${#fields.errors('*')}" th:text="${error}" class="mostrar-erro"></li>
+                    	</ul>
+                    </div>
+                    
                 </form>
             </div>
         </div>
