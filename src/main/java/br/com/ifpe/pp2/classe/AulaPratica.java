@@ -1,4 +1,4 @@
-package br.ifpe.pp2.classe;
+package br.com.ifpe.pp2.classe;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

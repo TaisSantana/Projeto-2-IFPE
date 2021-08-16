@@ -1,6 +1,4 @@
-package br.ifpe.pp2.classe;
-
-import java.time.LocalDate;
+package br.com.ifpe.pp2.classe;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,18 +8,16 @@ import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.br.CPF;
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-public class Aluno {
+public class Professor {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
+	
 	@NotBlank(message="O nome deve ser informado!")
 	private String nome;
 	@NotBlank(message="O email deve ser informado!")
@@ -42,17 +38,9 @@ public class Aluno {
 	//(081)99999-9999
 	@Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{5})[- ]?(\\d{4})$")
 	private String telefone;
-	@NotNull(message="A data de nascimento deve ser informada!")
-	@Past(message="A data não pode ser futura!")
-	@DateTimeFormat(pattern="yyyy-MM-dd")
-	private LocalDate dataNascimento;
-	
-	@Column(name = "is_ativo",columnDefinition = "integer default 0")
-	private Integer isAtivo;
-	@Column(name = "categoria_carteira",length=10)
-	private String categoriaCarteira;
+	@Column(name = "categoria_aula",length=10)
+	private String categoriaAula;
 	private Integer perfil;
-	
 	
 	public Integer getId() {
 		return id;
@@ -78,17 +66,11 @@ public class Aluno {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	public Integer getIsAtivo() {
-		return isAtivo;
+	public String getCategoriaAula() {
+		return categoriaAula;
 	}
-	public void setIsAtivo(Integer isAtivo) {
-		this.isAtivo = isAtivo;
-	}
-	public String getCategoriaCarteira() {
-		return categoriaCarteira;
-	}
-	public void setCategoriaCarteira(String categoriaCarteira) {
-		this.categoriaCarteira = categoriaCarteira;
+	public void setCategoriaAula(String categoriaAula) {
+		this.categoriaAula = categoriaAula;
 	}
 	public String getCpf() {
 		return cpf;
@@ -114,7 +96,5 @@ public class Aluno {
 	public void setPerfil(Integer perfil) {
 		this.perfil = perfil;
 	}
-	
-	
 	
 }

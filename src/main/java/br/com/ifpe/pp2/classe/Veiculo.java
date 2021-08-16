@@ -1,4 +1,4 @@
-package br.ifpe.pp2.classe;
+package br.com.ifpe.pp2.classe;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -1,4 +1,4 @@
-package br.ifpe.pp2.controller;
+package br.com.ifpe.pp2.controller;
 
 public class VeiculoController {
 

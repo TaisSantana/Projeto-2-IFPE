@@ -1,4 +1,4 @@
-package br.ifpe.pp2.dao;
+package br.com.ifpe.pp2.dao;
 
 public interface VideoAulaDAO  {
 

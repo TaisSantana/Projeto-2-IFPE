@@ -1,4 +1,4 @@
-package br.ifpe.pp2;
+package br.com.ifpe.pp2;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
