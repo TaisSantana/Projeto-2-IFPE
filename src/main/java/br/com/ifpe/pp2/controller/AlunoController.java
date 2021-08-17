@@ -19,7 +19,6 @@ import br.com.ifpe.pp2.classe.Aluno;
 import br.com.ifpe.pp2.dao.AlunoDAO;
 
 @Controller
-//@RequestMapping("/Aluno")
 public class AlunoController {
 	@Autowired
 	private AlunoDAO alunoDAO;
@@ -58,7 +57,6 @@ public class AlunoController {
 		}
 		try {
 			//transf em service
-			aluno.setPerfil(3);
 			aluno.setIsAtivo(0);
 			this.alunoDAO.save(aluno);
 			// fim transf em service, Controller agr n pode mais ter acesso direto ao DAO.
