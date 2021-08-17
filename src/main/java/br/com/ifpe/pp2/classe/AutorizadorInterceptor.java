@@ -12,15 +12,17 @@ public class AutorizadorInterceptor implements HandlerInterceptor{
 		HttpServletResponse response, Object handler) throws Exception {
 		
 		String uri = request.getRequestURI();
-        if( uri.endsWith("AlunoPage")   || 
-            uri.endsWith("efetuarLogin") || 
-            uri.contains("resources")) {
+		System.out.println(uri);
+        if( uri.endsWith("AlunoPage") ||
+            uri.endsWith("efetuarLogin") ||
+            uri.contains("/assets") ||
+            uri.endsWith("/paginaInicial")) {
             return true;
         }
         
 		if (request.getSession().getAttribute("usuarioLogado") == null) {
 			try {
-			request.getRequestDispatcher("/").forward(request, response); // redirecionar para outra página
+			request.getRequestDispatcher("/paginaInicial").forward(request, response); // redirecionar para outra página
 			return false;}catch(Exception e) {System.out.println(e.getMessage());}return false;
 		} else {
 			return true;

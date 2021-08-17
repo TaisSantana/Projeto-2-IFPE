@@ -24,7 +24,7 @@ public class AlunoController {
 	@Autowired
 	private AlunoDAO alunoDAO;
 	
-	@GetMapping("/")
+	@GetMapping("/paginaInicial")
 	private String exibirPgPrincipal() {
 		return "index";
 	}
