@@ -35,7 +35,6 @@ public class AlunoController {
 
 	@PostMapping("/precadastroAluno")
 	private String precadastroAluno(Aluno aluno) {
-		aluno.setPerfil(3);
 		aluno.setIsAtivo(0);
 		this.alunoDAO.save(aluno);
 		return "index";

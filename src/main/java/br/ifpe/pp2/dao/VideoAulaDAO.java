@@ -1,5 +1,10 @@
 package br.ifpe.pp2.dao;
 
-public interface VideoAulaDAO  {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import br.ifpe.pp2.classe.VideoAula;
+
+public interface VideoAulaDAO 
+	extends JpaRepository<VideoAula, Integer> {
 
 }

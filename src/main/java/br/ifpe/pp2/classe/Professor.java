@@ -11,18 +11,20 @@ public class Professor {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	
+	@Column(length = 80, nullable = false)
 	private String nome;
+	@Column(length = 80, nullable = false)
 	private String email;
+	@Column(length = 30, nullable = false)
 	private String senha;
-	@Column(name = "categoria_aula",length=10)
+	@Column(name = "categoria_aula",length=10, nullable = false)
 	private String categoriaAula;
 	@Column(length=11, nullable=false)
 	private String cpf;
 	private Endereco endereco;
 	@Column(length=10)
 	private String telefone;
-	private Integer perfil;
+	
 	
 	public Integer getId() {
 		return id;
@@ -72,11 +74,5 @@ public class Professor {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	public Integer getPerfil() {
-		return perfil;
-	}
-	public void setPerfil(Integer perfil) {
-		this.perfil = perfil;
-	}
-	
+
 }

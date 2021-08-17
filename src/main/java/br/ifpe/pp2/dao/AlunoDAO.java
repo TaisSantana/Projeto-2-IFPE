@@ -6,6 +6,6 @@ import br.ifpe.pp2.classe.Aluno;
 
 
 public interface AlunoDAO 
-extends JpaRepository<Aluno, Integer>  {
+	extends JpaRepository<Aluno, Integer>  {
 	
 }
