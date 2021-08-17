@@ -11,9 +11,11 @@ public class Administrador {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	
+	@Column(length=80, nullable=false)
 	private String nome;
+	@Column(length=80, nullable=false)
 	private String email;
+	@Column(length=50, nullable=false)
 	private String senha;
 	@Column(length=11, nullable=false)
 	private String cpf;

@@ -1,18 +1,26 @@
 package br.ifpe.pp2.classe;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 @Embeddable
 public class Endereco {
-	private String estado;
+	@Enumerated(EnumType.STRING) //Guarda no banco enforma de String
+	@Column(length = 5, nullable = false)// Varchar de 2 e deixa o campo obrigatorio
+	private Estado estado;
+	@Column(length = 30, nullable = false)// Varchar de 30 e deixa o campo obrigatorio
 	private String complemento;
+	@Column(length = 30, nullable = false)// Varchar de 30 e deixa o campo obrigatorio
 	private String logradouro;
+	@Column(length = 8, nullable = false)// Varchar de 8 e deixa o campo obrigatorio
 	private String cep;
 	
-	public String getEstado() {
+	public Estado getEstado() {
 		return estado;
 	}
-	public void setEstado(String estado) {
+	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}
 	public String getComplemento() {
@@ -33,5 +41,6 @@ public class Endereco {
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
-
+	
+	
 }

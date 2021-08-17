@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import br.ifpe.pp2.classe.Professor;
 
 public interface ProfessorDAO
-extends JpaRepository<Professor, Integer> {
+	extends JpaRepository<Professor, Integer> {
 
 	
 }

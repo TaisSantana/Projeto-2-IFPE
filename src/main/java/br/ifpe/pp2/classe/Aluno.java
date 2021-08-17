@@ -11,8 +11,11 @@ public class Aluno {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
+	@Column(length = 80, nullable = false) // Varchar de 80 e deixa o campo obrigatorio
 	private String nome;
+	@Column(length = 80, nullable = false)// Varchar de 80 e deixa o campo obrigatorio
 	private String email;
+	@Column(length = 50, nullable = false)// Varchar de 50 e deixa o campo obrigatorio
 	private String senha;
 	@Column(name = "is_ativo",columnDefinition = "integer default 0")
 	private Integer isAtivo;
@@ -23,7 +26,7 @@ public class Aluno {
 	private Endereco endereco;
 	@Column(length=10)
 	private String telefone;
-	private Integer perfil;
+	
 	
 	
 	public Integer getId() {
@@ -79,12 +82,6 @@ public class Aluno {
 	}
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
-	}
-	public Integer getPerfil() {
-		return perfil;
-	}
-	public void setPerfil(Integer perfil) {
-		this.perfil = perfil;
 	}
 	
 	
