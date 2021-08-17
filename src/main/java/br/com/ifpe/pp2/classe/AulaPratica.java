@@ -3,6 +3,8 @@ package br.com.ifpe.pp2.classe;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -33,6 +35,7 @@ public class AulaPratica {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public LocalDate getData() {
 		return data;
 	}
@@ -58,5 +61,5 @@ public class AulaPratica {
 		this.aluno = aluno;
 	}
 	
-	
+
 }

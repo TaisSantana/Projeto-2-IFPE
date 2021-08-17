@@ -19,11 +19,15 @@ public class Administrador {
 	private int id;
 	
 	@NotBlank(message="O nome deve ser informado!")
+	@Column(length=80, nullable=false)
 	private String nome;
 	@NotBlank(message="O email deve ser informado!")
 	@Email
+	@Column(length=80, nullable=false)
 	private String email;
 	@NotBlank(message="A senha deve ser informada!")
+
+	@Column(length=50, nullable=false)
 	private String senha;
 	@CPF
 	@NotBlank(message="O cpf deve ser informado!")

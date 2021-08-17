@@ -21,13 +21,17 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Aluno {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+
 	private int id;
 	@NotBlank(message="O nome deve ser informado!")
+	@Column(length=80, nullable=false)
 	private String nome;
 	@NotBlank(message="O email deve ser informado!")
 	@Email
+	@Column(length=80, nullable=false)
 	private String email;
 	@NotBlank(message="A senha deve ser informada!")
+	@Column(length=50, nullable=false)
 	private String senha;
 	@CPF
 	@NotBlank(message="O cpf deve ser informado!")
@@ -42,6 +46,7 @@ public class Aluno {
 	//(081)99999-9999
 	@Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{5})[- ]?(\\d{4})$")
 	private String telefone;
+
 	@NotNull(message="A data de nascimento deve ser informada!")
 	@Past(message="A data não pode ser futura!")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
@@ -107,12 +112,6 @@ public class Aluno {
 	}
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
-	}
-	public Integer getPerfil() {
-		return perfil;
-	}
-	public void setPerfil(Integer perfil) {
-		this.perfil = perfil;
 	}
 	
 	

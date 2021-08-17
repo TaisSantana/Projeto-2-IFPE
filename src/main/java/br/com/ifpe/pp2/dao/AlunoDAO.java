@@ -9,4 +9,5 @@ public interface AlunoDAO
 extends JpaRepository<Aluno, Integer>  {
 
 	public Aluno findByCpfAndSenha(String cpf, String senha);
+
 }
