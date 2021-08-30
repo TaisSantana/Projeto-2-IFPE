@@ -29,7 +29,7 @@ public class AlunoController {
 	}
 	
 	@GetMapping("/pre")
-	private String exibirPreMatricula() {
+	private String exibirPreMatricula(Aluno aluno) {
 		return "prematricula";
 	}
 	
@@ -55,16 +55,21 @@ public class AlunoController {
 			System.out.println(result.getAllErrors());
 			return "prematricula";
 		}
+	    if(aluno == null) {         // check if user object is empty
+	    	aluno = new Aluno();    // if user is empty, then instantiate a new user object
+	    	model.addAttribute("aluno", aluno);
+	    }
 		try {
 			//transf em service
 			aluno.setIsAtivo(0);
 			this.alunoDAO.save(aluno);
 			// fim transf em service, Controller agr n pode mais ter acesso direto ao DAO.
 			
-			ra.addFlashAttribute("mensagem","Funcionário Cadastrado com Sucesso");
+			ra.addFlashAttribute("mensagem","Aluno Cadastrado com Sucesso!");
 			return "redirect:/login";
 		}catch (ServiceException e){
 			result.addError(new ObjectError("global",e.getMessage()));
+			e.printStackTrace();
 			return "index";
 		}
 	}

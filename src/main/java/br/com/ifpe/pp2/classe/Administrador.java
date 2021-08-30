@@ -42,11 +42,6 @@ public class Administrador {
 	//(081)99999-9999
 	@Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{5})[- ]?(\\d{4})$")
 	private String telefone;
-	/*
-	 * 1-ADM
-	 * 2-PROFESSOR
-	 * 3-ALUNO*/
-	private Integer perfil;
 	public int getId() {
 		return id;
 	}
@@ -89,13 +84,6 @@ public class Administrador {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	public Integer getPerfil() {
-		return perfil;
-	}
-	public void setPerfil(Integer perfil) {
-		this.perfil = perfil;
-	}
-	
 	
 	
 }

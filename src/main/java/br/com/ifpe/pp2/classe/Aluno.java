@@ -21,7 +21,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Aluno {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-
 	private int id;
 	@NotBlank(message="O nome deve ser informado!")
 	@Column(length=80, nullable=false)
@@ -33,30 +32,27 @@ public class Aluno {
 	@NotBlank(message="A senha deve ser informada!")
 	@Column(length=50, nullable=false)
 	private String senha;
-	@CPF
+	//@CPF
 	@NotBlank(message="O cpf deve ser informado!")
-	@Max(11)
+	//@Max(11)
 	@Column(length=11, nullable=false)
 	private String cpf;
-	@NotBlank(message="O endereco deve ser informado!")
 	private Endereco endereco;
 	@NotBlank(message="O telefone deve ser informado!")
 	//@Size(min="", max="", message="")
 	@Column(length=16)
 	//(081)99999-9999
-	@Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{5})[- ]?(\\d{4})$")
+	//@Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{5})[- ]?(\\d{4})$")
 	private String telefone;
 
-	@NotNull(message="A data de nascimento deve ser informada!")
-	@Past(message="A data não pode ser futura!")
+	/*@Past(message="A data não pode ser futura!")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	private LocalDate dataNascimento;
+	private LocalDate dataNascimento;*/
 	
 	@Column(name = "is_ativo",columnDefinition = "integer default 0")
 	private Integer isAtivo;
 	@Column(name = "categoria_carteira",length=10)
 	private String categoriaCarteira;
-	private Integer perfil;
 	
 	
 	public Integer getId() {

@@ -8,13 +8,13 @@ import javax.persistence.Enumerated;
 @Embeddable
 public class Endereco {
 	@Enumerated(EnumType.STRING) //Guarda no banco enforma de String
-	@Column(length = 5, nullable = false)// Varchar de 2 e deixa o campo obrigatorio
+	@Column(length = 5)// Varchar de 2 e deixa o campo obrigatorio
 	private Estado estado;
-	@Column(length = 30, nullable = false)// Varchar de 30 e deixa o campo obrigatorio
+	@Column(length = 30)// Varchar de 30 e deixa o campo obrigatorio
 	private String complemento;
-	@Column(length = 30, nullable = false)// Varchar de 30 e deixa o campo obrigatorio
+	@Column(length = 30)// Varchar de 30 e deixa o campo obrigatorio
 	private String logradouro;
-	@Column(length = 8, nullable = false)// Varchar de 8 e deixa o campo obrigatorio
+	@Column(length = 8)// Varchar de 8 e deixa o campo obrigatorio
 	private String cep;
 	
 	public Estado getEstado() {

@@ -7,7 +7,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 public class AutorizadorInterceptor implements HandlerInterceptor{
 	
-	private static final String[] RECURSOS_LIVRES = {"/","/assets","/login","/logout","/acesso-negado","/pre","/sobre","/paginaInicial"};
+	private static final String[] RECURSOS_LIVRES = {"/","/precadastroAluno","/assets","/login","/logout","/acesso-negado","/pre","/sobre","/paginaInicial"};
 
 	//indica se vai continuar com a requisição antes de ir p controller, ou não.
 	@Override

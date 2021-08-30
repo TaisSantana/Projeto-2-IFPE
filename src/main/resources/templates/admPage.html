@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:replace="header :: headerBlock">
+	<style type="text/css"></style>
+</head>
+<body>
+  
+<div th:replace="header :: navBar"></div>
+
+<section class="features12 cid-sBRgIGSWvl" id="features13-2e">
+
+    
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-6">
+                <div class="card-wrapper">
+                    <div class="card-box align-left">
+                        <h4 class="card-title mbr-fonts-style mb-4 display-2">
+                            <strong>Bem vindo, ${usuarioLogado.nome}!</strong></h4>
+                        <p class="mbr-text mbr-fonts-style mb-4 display-7">
+                            Escolha uma das opções ao lado&nbsp;</p>
+                        <div class="mbr-section-btn"><a class="btn btn-white-outline display-4" href="page8.html"></a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6">
+                <div class="item mbr-flex">
+                    <div class="icon-box">
+                        <a href="page20.html"><span class="mbr-iconfont mobi-mbri-arrow-down mobi-mbri"></span></a>
+                    </div>
+                    <div class="text-box">
+                        <h4 class="icon-title mbr-black mbr-fonts-style display-7"><div><strong>Autorizar Pré-matrícula</strong></div></h4>
+                        <h5 class="icon-text mbr-black mbr-fonts-style display-4">autorizar Pré-matrícula</h5>
+                    </div>
+                </div>
+                <div class="item mbr-flex">
+                    <div class="icon-box">
+                        <a href="page22.html"><span class="mbr-iconfont mobi-mbri-users mobi-mbri"></span></a>
+                    </div>
+                    <div class="text-box">
+                        <h4 class="icon-title mbr-black mbr-fonts-style display-7"><strong>Usuário</strong></h4>
+                        <h5 class="icon-text mbr-black mbr-fonts-style display-4">Criar acesso Professor/Aluno</h5>
+                    </div>
+                </div>
+                <div class="item mbr-flex">
+                    <div class="icon-box">
+                        <a href="page21.html"><span class="mbr-iconfont mobi-mbri-contact-form mobi-mbri"></span></a>
+                    </div>
+                    <div class="text-box">
+                        <h4 class="icon-title mbr-black mbr-fonts-style display-7"><strong>Registrar aulas</strong></h4>
+                        <h5 class="icon-text mbr-black mbr-fonts-style display-4">Definir horários das aulas praticas</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div th:replace="header :: footer"></div>
+
+</body>
+</html>
