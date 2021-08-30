@@ -1,4 +1,4 @@
-package br.com.ifpe.pp2.controller;
+package LoginAPI;
 
 import javax.servlet.http.HttpSession;
 

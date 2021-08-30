@@ -1,4 +1,4 @@
-package br.com.ifpe.pp2.classe;
+package LoginAPI;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
