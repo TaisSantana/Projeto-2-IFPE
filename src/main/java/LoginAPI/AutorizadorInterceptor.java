@@ -9,21 +9,20 @@ public class AutorizadorInterceptor implements HandlerInterceptor{
 	
 	private static final String[] RECURSOS_LIVRES = {"/","/precadastroAluno","/assets","/login","/logout","/acesso-negado","/pre","/sobre","/paginaInicial"};
 
-	//indica se vai continuar com a requisição antes de ir p controller, ou não.
 	@Override
-	public boolean preHandle(HttpServletRequest request,
-		HttpServletResponse response, Object handler) throws Exception {
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		
 		
 		for (String recurso: RECURSOS_LIVRES) {
 			if (request.getRequestURL().toString().endsWith(recurso)) {
+				System.out.println(recurso +"- TERMINA COM RECURSO.");
 				return true;
 			}
 		}
         
-		if (request.getSession().getAttribute("usuarioLogado") == null) {		
-			request.getRequestDispatcher("/paginaInicial").forward(request, response); // redirecionar para outra página
+		if (request.getSession().getAttribute("usuarioLogado") == null) {	
 			System.out.println("var USUARIOLOGADO == NULL");
+			request.getRequestDispatcher("redirect:/paginaInicial").forward(request, response); // redirecionar para outra página	
 			return false;
 		} else {
 			System.out.println("var USUARIOLOGADO DIF NULL");

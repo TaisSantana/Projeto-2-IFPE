@@ -48,6 +48,25 @@ public class AlunoController {
 		return "alunoPage";
 	}
 	
+	@PostMapping("/efetuarLogin")
+	public String efetuarLogin(Aluno aluno, RedirectAttributes ra, HttpSession session) {
+		aluno = this.alunoDAO.findByCpfAndSenha(aluno.getCpf(), aluno.getSenha());
+		System.out.println("---------------------------------");
+		if (aluno != null) {
+			session.setAttribute("usuarioLogado", aluno);
+			return "redirect:/alunoPage";
+		}else {
+			ra.addFlashAttribute("mensagemErro", "Usuário/senha inválidos");
+			return "redirect:/login";
+		}	
+		//return "redirect:/";
+	}
+	
+	@PostMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
+	}
 	
 	@PostMapping("/precadastroAluno")
 	private String precadastroAluno(@Valid Aluno aluno, BindingResult result, Model model, RedirectAttributes ra) {
@@ -72,6 +91,18 @@ public class AlunoController {
 			e.printStackTrace();
 			return "index";
 		}
+	}
+	
+	@GetMapping("/editarAluno")
+	public String editarAluno(Integer codigo, Model model) {
+		model.addAttribute("aluno", this.alunoDAO.findById(codigo));
+		return "cliente/cliente-form";
+	}
+	
+	@GetMapping("/removerCliente")
+	public String removerCliente(Integer codigo) {
+		this.alunoDAO.findById(codigo);
+		return "redirect:/listarClientes";
 	}
 	
 	}
