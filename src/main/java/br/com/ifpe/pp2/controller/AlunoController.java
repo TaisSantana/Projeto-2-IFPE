@@ -3,6 +3,7 @@ package br.com.ifpe.pp2.controller;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.ifpe.pp2.classe.Aluno;
+import br.com.ifpe.pp2.classe.AulaPratica;
 import br.com.ifpe.pp2.dao.AlunoDAO;
 
 @Controller
@@ -35,6 +37,11 @@ public class AlunoController {
 	
 	@GetMapping("/login")
 	private String exibirLogin() {
+		/*Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String nomeUsuario = auth.getName();
+
+		Aluno ususarioASerAlterado = repositorioUsuario.findByUsername(nomeUsuario);
+		model.addAttribute("usuario", ususarioASerAlterado);*/
 		return "login";
 	}
 	
@@ -44,7 +51,9 @@ public class AlunoController {
 	}
 
 	@GetMapping("/alunoPage")
-	private String exibirPageAluno() {
+	private String exibirPageAluno(HttpSession session,Model model,AulaPratica aula) {
+		Aluno aluno =(Aluno)session.getAttribute("usuarioLogado");
+		model.addAttribute("aluno", aluno);
 		return "alunoPage";
 	}
 	

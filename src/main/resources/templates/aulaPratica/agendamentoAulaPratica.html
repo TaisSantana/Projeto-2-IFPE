@@ -27,19 +27,19 @@
 
                     <div class="container">
                         <h2>Realizar Agendamento</h2>
-						<form action="/aulaPratica/cadastroAulaPratica" method="post" th:object="${aula}">
+						<form action="/aulaPratica/salvarAulaPratica" method="post" th:object="${aula}">
 		                    <div class="dragArea row">
-		                    	<input name="id" type="hidden" th:field="*{id}">
+		                    	<input type="hidden" th:field="*{id}">
 		                        <div class="col-md-6 col-sm-12 form-group" data-for="data">
-		                            <input type="date" placeholder="data" data-form-field="data" name="data" class="form-control" value="" id="name-form5-c" required th:field="*{data}">
+		                            <input type="date" placeholder="data" data-form-field="data" name="data" class="form-control"  required th:field="*{data}">
 		                        </div>
 		                        <div class="col-md-6 col-sm-12 form-group" data-for="hora">
-		                            <input name="hora" type="hora" placeholder="E-mail" data-form-field="hora" class="form-control" value="" id="email-form5-c" required th:field="*{hora}">
+		                            <input name="hora" type="time" placeholder="horário" data-form-field="hora" class="form-control"  required th:field="*{hora}">
 		                        </div>
 		                        <div class="form-group">
 									<label for="professor">Professor</label> 
 									<select id="professor" class="form-control"  th:field="*{professor}">
-										<option value="0">Selecione um professor</option>
+										<option value="0">Selecione um professor:</option>
 										<option th:each="prof : ${listaProf}" th:text="${prof.nome}" th:value="${prof.id}" />
 									</select>
 								</div>

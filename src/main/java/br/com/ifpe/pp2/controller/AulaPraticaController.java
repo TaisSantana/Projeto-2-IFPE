@@ -1,5 +1,7 @@
 package br.com.ifpe.pp2.controller;
 
+import java.util.Optional;
+
 import javax.validation.Valid;
 
 import org.hibernate.service.spi.ServiceException;
@@ -19,6 +21,7 @@ import br.com.ifpe.pp2.classe.Aluno;
 import br.com.ifpe.pp2.classe.AulaPratica;
 import br.com.ifpe.pp2.dao.ProfessorDAO;
 import br.com.ifpe.pp2.dao.AlunoDAO;
+import br.com.ifpe.pp2.dao.AulaPraticaDAO;
 
 //alteta tds rotas da classe, antes tem q ter /aulaPratica
 @Controller
@@ -28,49 +31,62 @@ public class AulaPraticaController {
 	private ProfessorDAO professorDAO;
 	@Autowired
 	private AlunoDAO alunoDAO;
+	@Autowired
+	private AulaPraticaDAO aulaPraticaDAO;
 	
-	@GetMapping("/agendarAula")
-	private String agendarAulaP(Integer codigo, AulaPratica aula,Model model, @RequestParam(value="perfil",defaultValue="3") String perfil) {
-		//identifica pelo query paramn se é adm =1, prof=2 ou aluno =3, p gerenciar o front.
-		model.addAttribute("perfil", perfil);
+	@GetMapping("/listarAulasPraticas")
+	public String exibirLista(Model model) {
+		model.addAttribute("listaAulas", this.aulaPraticaDAO.findAll(Sort.by("data")));
+		return "aulaPratica/aulaPratica-list";
+	}
+	@GetMapping("/listarAulasPraticasPorAluno")
+	public String exibirLista(Model model, Integer id) {
+		//testar se funciona
+		Optional<Aluno> aluno = this.alunoDAO.findById(id);
+		model.addAttribute("listaAulas", this.aulaPraticaDAO.findByAluno(aluno));
+		return "aulaPratica/aulaPratica-list-por-aluno";
+	}
+	
+	@GetMapping("/exibirFormCadastrarAulaPraticaPorAluno")
+	public String exibirFormCadastrarAulaPraticaPorAluno(Integer id, AulaPratica aula, Model model) {
 		model.addAttribute("listaProf", professorDAO.findAll(Sort.by("nome")));
-		model.addAttribute("listaAluno", alunoDAO.findAll(Sort.by("nome")));
-		if (perfil =="2") {
-			model.addAttribute("usu", this.professorDAO.findById(codigo));
-		}else if(perfil =="3") {
-			model.addAttribute("usu", this.alunoDAO.findById(codigo));
+		model.addAttribute("aluno",alunoDAO.findById(id));
+		return "aulaPratica/agendamentoAulaPraticaPorAluno";
+	}
+	
+	@GetMapping("/exibirFormCadastrarAulaPratica")
+	public String exibirFormCadastrarAulaPratica(Integer id, AulaPratica aula, Model model) {
+		model.addAttribute("listaProf", professorDAO.findAll(Sort.by("nome")));
+		model.addAttribute("listaAluno",alunoDAO.findAll(Sort.by("nome")));
+		return "aulaPratica/agendamentoAulaPratica";
+	}
+	
+	
+	@PostMapping("/salvarAulaPratica")
+	private String salvarAulaPratica(@Valid AulaPratica aula, Integer id, BindingResult result, Model model, RedirectAttributes ra) {
+		if (result.hasErrors()) {
+			return exibirFormCadastrarAulaPratica(id, aula, model);
 		}
-		return "agendamentoAulaPratica";
+		this.aulaPraticaDAO.save(aula);
+		return "redirect:/listarAulasPraticasPorAluno";
+	}	
+	
+	@GetMapping("/editarAulaPratica")
+	public String editarAulaPratica(Integer id, Model model) {
+		model.addAttribute("aula", this.aulaPraticaDAO.findById(id));
+		model.addAttribute("listaProf", professorDAO.findAll(Sort.by("nome")));
+		return "aulaPratica/agendamentoAulaPratica";
 	}
 
-	@GetMapping("/agendarAulaTeorica")
-	private String agendarAulaT() {
-		return "agendamentoAulaTeorica";
+	@GetMapping("/removerAulaPraticaPorAluno")
+	public String removerAulaPraticaPorAluno(Integer id, RedirectAttributes ra) {
+		this.aulaPraticaDAO.deleteById(id);	
+		return "redirect:/listarAulasPraticasPorAluno";
 	}
 	
-	@PostMapping("/cadastroAulaPratica")
-	private String precadastroAluno(@Valid Aluno aluno, BindingResult result, Model model, RedirectAttributes ra) {
-		if (result.hasErrors()) {
-			System.out.println(result.getAllErrors());
-			return "prematricula";
-		}
-	    if(aluno == null) {         // check if user object is empty
-	    	aluno = new Aluno();    // if user is empty, then instantiate a new user object
-	    	model.addAttribute("aluno", aluno);
-	    }
-		try {
-			//transf em service
-			aluno.setIsAtivo(0);
-			this.alunoDAO.save(aluno);
-			// fim transf em service, Controller agr n pode mais ter acesso direto ao DAO.
-			
-			ra.addFlashAttribute("mensagem","Aluno Cadastrado com Sucesso!");
-			return "redirect:/login";
-		}catch (ServiceException e){
-			result.addError(new ObjectError("global",e.getMessage()));
-			e.printStackTrace();
-			return "index";
-		}
+	@GetMapping("/removerAulaPratica")
+	public String removerAulaPratica(Integer id, RedirectAttributes ra) {
+		this.aulaPraticaDAO.deleteById(id);	
+		return "redirect:/listarAulasPraticas";
 	}
-	
 }

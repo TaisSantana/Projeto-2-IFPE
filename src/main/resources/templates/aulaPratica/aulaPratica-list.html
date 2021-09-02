@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:replace="header :: headerBlock">
+<style type="text/css"></style>
+</head>
+
+<body>
+
+	<div th:replace="header :: navBar"></div>
+
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">Home</li>
+			<li class="breadcrumb-item">Cadastro</li>
+			<li class="breadcrumb-item active" aria-current="page"><a href="">Lista de
+				Aulas</a></li>
+		</ol>
+	</nav>
+	
+	<b><div th:if="${mensagemErro}" th:text="${mensagemErro}"></div></b>
+	<div class="contatiner col-sm-12 col-md-6 col-md-offset-2">
+		<table class="table table-striped table-bordered table-sm">
+		<h3>Lista de Associados</h3>
+			<thead class="table-success">
+
+				<tr>
+					<th>Aluno</th>
+					<th>Professor</th>
+					<th>Data</th>
+					<th>Hora</th>
+					<th>Categoria</th>
+					
+					<th>Acões</th>
+				</tr>
+			</thead>
+			<tr th:each="prat. : ${listaAulas}">
+				<td th:text="${prat.aluno.nome}+" - "+${prat.aluno.cpf}"></td>
+				<td th:text="${prat.professor.nome}"+" - "+"${prat.professor.cpf}"></td>
+				<td th:text="${prat.data}"></td>
+				<td th:text="${prat.hora}"></td>
+				<td th:text="${prat.categoriaCarteira}"></td>
+				
+				<td>
+					<a th:href="@{/editarAulaPratica(id=${assoc.id})}">
+						<i class='fas fa-pencil-alt' style='font-size:20px'></i>
+					</a>				
+					<a th:href="@{/removerAulaPratica(id=${assoc.id})}">
+						<i class='fas fa-remove' style='font-size:20px'></i>
+					</a>
+				</td>
+			</tr>
+		</table>
+		<hr />
+		<a href="/exibirFormCadastrarAssociado" class="btn btn-primary btn-sm active"
+			role="button" aria-pressed="true">Nova aula</a>
+
+	</div>
+</body>
+</html>
