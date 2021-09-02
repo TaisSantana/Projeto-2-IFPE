@@ -23,7 +23,7 @@
                             <strong>Bem vindo, Aluno!</strong></h4>
                         <p class="mbr-text mbr-fonts-style mb-4 display-7">
                             Escolha uma das opções ao lado&nbsp;</p>
-                        <div class="mbr-section-btn"><a class="btn btn-primary display-4" href="page8.html">Meu Perfil</a></div>
+                        
                     </div>
                 </div>
             </div>
@@ -35,28 +35,29 @@
                     <div class="text-box">
                         <h4 class="icon-title mbr-black mbr-fonts-style display-7">
                             <strong>Aulas</strong></h4>
-                        <h5 class="icon-text mbr-black mbr-fonts-style display-4">Visualize suas aulas teóricas.</h5>
+                        <a th:href="@{/aulaPratica/aulaPratica-list}"class="icon-text mbr-black mbr-fonts-style display-4">Listagem aulas Marcadas</a>
                     </div>
                 </div>
                 <div class="item mbr-flex">
                     <div class="icon-box">
-                        <a th:href="@{/aulaPratica/exibirFormCadastrarAulaPraticaPorAluno(id=${aluno.id})}"><span class="mbr-iconfont mobi-mbri-edit mobi-mbri"></span></a>
+                        <a><span class="mbr-iconfont mobi-mbri-edit mobi-mbri"></span></a>
                     </div>
                     <div class="text-box">
                         <h4 class="icon-title mbr-black mbr-fonts-style display-7">
                             <strong>Agendamento</strong></h4>
-                        <h5 class="icon-text mbr-black mbr-fonts-style display-4">Faça o agendamento de suas aulas praticas.</h5>
+                        <a th:href="@{/aulaPratica/exibirFormCadastrarAulaPraticaPorAluno(id=${aluno.id})}" class="icon-text mbr-black mbr-fonts-style display-4">Faça o agendamento de suas aulas praticas.</a>
                     </div>
+                    
                 </div>
                 <div class="item mbr-flex">
-                    <div class="icon-box">
-                        <a href="page14.html"><span class="mbr-iconfont mobi-mbri-contact-form mobi-mbri"></span></a>
+                <div class="icon-box">
+                        <a><span class="mbr-iconfont mobi-mbri-edit mobi-mbri"></span></a>
                     </div>
                     <div class="text-box">
-                        <h4 class="icon-title mbr-black mbr-fonts-style display-7"><strong>Pratique</strong></h4>
+                       <a href="https://online7.detran.pe.gov.br/Habilitacao/ProvaEletronica"> <h4 class="icon-title mbr-black mbr-fonts-style display-7"><strong>Pratique</strong></h4></a>
                         <h5 class="icon-text mbr-black mbr-fonts-style display-4">Realize testes, para praticar</h5>
                     </div>
-                </div>
+             	</div>
             </div>
         </div>
     </div>

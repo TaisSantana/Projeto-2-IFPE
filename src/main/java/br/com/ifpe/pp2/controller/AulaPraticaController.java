@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.ifpe.pp2.classe.Aluno;
 import br.com.ifpe.pp2.classe.AulaPratica;
+import br.com.ifpe.pp2.classe.Professor;
 import br.com.ifpe.pp2.dao.ProfessorDAO;
 import br.com.ifpe.pp2.dao.AlunoDAO;
 import br.com.ifpe.pp2.dao.AulaPraticaDAO;
@@ -48,9 +49,9 @@ public class AulaPraticaController {
 	}
 	
 	@GetMapping("/exibirFormCadastrarAulaPraticaPorAluno")
-	public String exibirFormCadastrarAulaPraticaPorAluno(Integer id, AulaPratica aula, Model model) {
-		model.addAttribute("listaProf", professorDAO.findAll(Sort.by("nome")));
+	public String exibirFormCadastrarAulaPraticaPorAluno(Integer id, AulaPratica aulaPratica, Model model) {
 		model.addAttribute("aluno",alunoDAO.findById(id));
+		model.addAttribute("listaProf", professorDAO.findAll(Sort.by("nome")));
 		return "aulaPratica/agendamentoAulaPraticaPorAluno";
 	}
 	
@@ -63,10 +64,12 @@ public class AulaPraticaController {
 	
 	
 	@PostMapping("/salvarAulaPratica")
-	private String salvarAulaPratica(@Valid AulaPratica aula, Integer id, BindingResult result, Model model, RedirectAttributes ra) {
+	private String salvarAulaPratica(@Valid AulaPratica aula, Aluno aluno, Professor professor, Integer id, BindingResult result, Model model, RedirectAttributes ra) {
 		if (result.hasErrors()) {
-			return exibirFormCadastrarAulaPratica(id, aula, model);
+			//return exibirFormCadastrarAulaPratica(id, aula, model);
 		}
+		aula.setAluno(aluno);
+		aula.setProfessor(professor);
 		this.aulaPraticaDAO.save(aula);
 		return "redirect:/listarAulasPraticasPorAluno";
 	}	

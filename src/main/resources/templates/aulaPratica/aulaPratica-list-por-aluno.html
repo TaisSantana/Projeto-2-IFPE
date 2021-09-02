@@ -35,8 +35,8 @@
 				</tr>
 			</thead>
 			<tr th:each="prat. : ${listaAulas}">
-				<td th:text="${prat.aluno.nome}+" - "+${prat.aluno.cpf}"></td>
-				<td th:text="${prat.professor.nome}"+" - "+"${prat.professor.cpf}"></td>
+				<td th:text="${prat.aluno.nome}"></td>
+				<td th:text="${prat.professor.nome}"></td>
 				<td th:text="${prat.data}"></td>
 				<td th:text="${prat.hora}"></td>
 				<td th:text="${prat.categoriaCarteira}"></td>
@@ -52,7 +52,7 @@
 			</tr>
 		</table>
 		<hr />
-		<a href="/exibirFormCadastrarAulaPratica" class="btn btn-primary btn-sm active"
+		<a href="/exibirFormCadastrarAulaPraticaPorAluno" class="btn btn-primary btn-sm active"
 			role="button" aria-pressed="true">Nova aula</a>
 
 	</div>

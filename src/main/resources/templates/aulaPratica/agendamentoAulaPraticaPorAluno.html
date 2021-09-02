@@ -23,35 +23,38 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-lg-7 col-12">
-
+				<div class="container col-sm-12 col-md-6 col-md-offset-2" >
+					<h3>Cadastrar Administrador</h3>
+					<form action="/aulaPratica/salvarAulaPratica" method="post" th:object="${aulaPratica}">
+						<input type="hidden" th:field="*{id}">
+						<div class="form-group">
+							<label for="professor">Professor</label> 
+							<select id="professor" class="form-control"  th:field="*{professor}">
+								<option value="0">Selecione um professor:</option>
+								<option th:each="prof : ${listaProf}" th:text="${prof.nome}" th:value="${prof.id}" />
+							</select>
+						</div>
+						<div class="form-group">
+		                            <input type="text" required th:field="*{data}">
+		                 </div>
+		                        
+		                 <div class="form-group" >
+		                            <input name="hora" type="text" placeholder="horário" data-form-field="hora" class="form-control"  required th:field="*{hora}">
+		                        </div>
+						<div th:if="${#fields.hasErrors('*')}">
+							<ul>
+								<li th:each="erro : ${#fields.errors('*')}" th:text="${erro}" class="alert-danger">
+							</ul>
+						</div>
+						<button type="submit" class="btn btn-primary">Salvar</button>
+						
+						
+					</form>
+				</div>
 
                     <div class="container">
                         <h2>Realizar Agendamento</h2>
-						<form action="/aulaPratica/salvarAulaPratica" method="post" th:object="${aula}">
-		                    	<input type="hidden" th:field="*{id}">
-		                    	<!--<input type="hidden" th:field="*{aluno}" th:value="${aluno}">-->
-		                    	<label for="nome">Nome Aluno:</label>	
-		                    	<b><span th:text="${aluno.nome}"></span></b><br/>
-								<div class="form-group">
-									<label for="professor">Professor</label> 
-									<select id="professor" class="form-control"  th:field="*{professor}">
-										<option value="0">Selecione um professor:</option>
-										<option th:each="prof : ${listaProf}" th:text="${prof.nome}" th:value="${prof.id}" />
-									</select>
-								</div>
-		                        <div class="col-md-6 col-sm-12 form-group" data-for="data">
-		                            <input type="date" placeholder="data" data-form-field="data" name="data" class="form-control"  required th:field="*{data}">
-		                        </div>
-		                        <div class="col-md-6 col-sm-12 form-group" data-for="hora">
-		                            <input name="hora" type="time" placeholder="horário" data-form-field="hora" class="form-control"  required th:field="*{hora}">
-		                        </div>
-		                        
-		                        
-		                        <div class="col-lg-12 col-md-12 col-sm-12 align-center mbr-section-btn">
-		                        	<button type="submit" class="btn btn-primary display-4">Salvar Aula</button>
-		                        </div>
-		                    
-		                </form>
+						
                         
                     </div>
 

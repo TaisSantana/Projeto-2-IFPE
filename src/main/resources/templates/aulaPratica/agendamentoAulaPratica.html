@@ -27,9 +27,9 @@
 
                     <div class="container">
                         <h2>Realizar Agendamento</h2>
-						<form action="/aulaPratica/salvarAulaPratica" method="post" th:object="${aula}">
+						<form action="/aulaPratica/salvarAulaPratica" method="post" th:object="${aulaPratica}">
 		                    <div class="dragArea row">
-		                    	<input type="hidden" th:field="*{id}">
+		                    	
 		                        <div class="col-md-6 col-sm-12 form-group" data-for="data">
 		                            <input type="date" placeholder="data" data-form-field="data" name="data" class="form-control"  required th:field="*{data}">
 		                        </div>
@@ -65,83 +65,11 @@
         </div>
     </section>
 
-    <section class="features13 cid-sBOJuoFfjG" id="features14-1i">
-
-
-
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h3 class="mbr-section-title align-center mb-4 mbr-fonts-style display-2"></h3>
-                </div>
-                <div class="card col-12 col-md-4 col-lg-2 p-3">
-                    <div class="card-wrapper">
-                        <div class="card-box align-center">
-                            <a href="page4.html"><span class="mbr-iconfont mobi-mbri-home mobi-mbri"></span></a>
-                            <h4 class="card-title align-center mbr-black mbr-fonts-style display-7">
-                                <strong>Pagina inicial</strong>
-                            </h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="card p-3 col-12 col-md-4 col-lg-2">
-                    <div class="card-wrapper">
-                        <div class="card-box align-center">
-                            <a href="page12.html"><span class="mbr-iconfont mobi-mbri-video-play mobi-mbri"></span></a>
-                            <h4 class="card-title align-center mbr-black mbr-fonts-style display-7">
-                                <strong>Aulas&nbsp;</strong>
-                            </h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="card p-3 col-12 col-md-4 col-lg-2">
-                    <div class="card-wrapper">
-                        <div class="card-box align-center">
-                            <a href="page13.html"><span class="mbr-iconfont mobi-mbri-edit mobi-mbri"></span></a>
-                            <h4 class="card-title align-center mbr-black mbr-fonts-style display-7">
-                                <strong>Agendamentos</strong>
-                            </h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="card p-3 col-12 col-md-4 col-lg-2">
-                    <div class="card-wrapper">
-                        <div class="card-box align-center">
-                            <a href="page14.html"><span
-                                    class="mbr-iconfont mobi-mbri-contact-form mobi-mbri"></span></a>
-                            <h4 class="card-title align-center mbr-black mbr-fonts-style display-7">
-                                <strong>Pratique</strong>
-                            </h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="card p-3 col-12 col-md-4 col-lg-2">
-                    <div class="card-wrapper">
-                        <div class="card-box align-center">
-                            <span class="mbr-iconfont mobi-mbri-cust-feedback mobi-mbri"
-                                style="color: rgb(255, 255, 255); fill: rgb(255, 255, 255);"></span>
-                            <h4 class="card-title align-center mbr-black mbr-fonts-style display-7"></h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="card p-3 col-12 col-md-4 col-lg-2">
-                    <div class="card-wrapper">
-                        <div class="card-box align-center">
-                            <span class="mbr-iconfont mobi-mbri-devices mobi-mbri"
-                                style="color: rgb(255, 255, 255); fill: rgb(255, 255, 255);"></span>
-                            <h4 class="card-title align-center mbr-black mbr-fonts-style display-7"></h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
       <div th:replace="header :: footer"></div>
     <section
         style="background-color: #fff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; color:#aaa; font-size:12px; padding: 0; align-items: center; display: flex;">
         <a href="https://mobirise.site/o" style="flex: 1 1; height: 3rem; padding-left: 1rem;"></a>
-        <p style="flex: 0 0 auto; margin:0; padding-right:1rem;">Website was <a href="https://mobirise.site/h"
-                style="color:#aaa;">started with</a> Mobirise</p>
+        
     </section>
     <script src="assets/web/assets/jquery/jquery.min.js"></script>
     <script src="assets/popper/popper.min.js"></script>

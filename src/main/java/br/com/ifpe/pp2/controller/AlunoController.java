@@ -51,7 +51,7 @@ public class AlunoController {
 	}
 
 	@GetMapping("/alunoPage")
-	private String exibirPageAluno(HttpSession session,Model model,AulaPratica aula) {
+	private String exibirPageAluno(HttpSession session,Model model) {
 		Aluno aluno =(Aluno)session.getAttribute("usuarioLogado");
 		model.addAttribute("aluno", aluno);
 		return "alunoPage";

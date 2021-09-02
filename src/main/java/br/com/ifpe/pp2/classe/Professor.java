@@ -34,16 +34,16 @@ public class Professor {
 	@Column(length=11, nullable=false)
 	private String cpf;
 	
-	@Column(name = "categoria_aula",length=10, nullable = false)
+	//@Column(name = "categoria_aula",length=10, nullable = false)
 	private String categoriaAula;
 	
-	@NotBlank(message="O endereco deve ser informado!")
+	//@NotBlank(message="O endereco deve ser informado!")
 	private Endereco endereco;
 	@NotBlank(message="O telefone deve ser informado!")
 	//@Size(min="", max="", message="")
-	@Column(length=16)
+	//@Column(length=16)
 	//(081)99999-9999
-	@Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{5})[- ]?(\\d{4})$")
+	//@Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{5})[- ]?(\\d{4})$")
 	private String telefone;
 
 
