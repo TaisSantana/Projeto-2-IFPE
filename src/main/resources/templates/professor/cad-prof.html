@@ -14,9 +14,10 @@
 		                <strong>Cadastrar Professor</strong></h3>
 		            
 		        </div>
+		        
 		        <div class="row justify-content-center mt-4">
 		            <div class="col-lg-8 mx-auto mbr-form">
-		                <form action="/precadastroAluno" method="post" th:object="${professor}">
+		                <form action="/salvarProf" method="post" th:object="${professor}">
 		                    <div class="dragArea row">
 		                    	<input name="id" type="hidden" th:field="*{id}">
 		                        <div class="col-md-6 col-sm-12 form-group" data-for="name">
@@ -31,6 +32,9 @@
 		                        <div class="col-md-6 col-sm-12 form-group" data-for="cpf">
 		                            <input type="text" name="cpf" placeholder="CPF" maxlength="11" data-form-field="cpf" class="form-control" value="" id="email-form5-c" required th:field="*{cpf}">
 		                        </div>
+		                         <div class="col-md-6 col-sm-12 form-group" data-for="cpf">
+		                            <input type="text" name="categoriaAula" placeholder="categoria Aula" maxlength="11" data-form-field="categoriaAula" class="form-control" value="" required th:field="*{categoriaAula}">
+		                        </div>
 		                        <div class="col-12 form-group" data-for="textarea">
 		                            <input type="text" name="senha" placeholder="Senha" data-form-field="text" class="form-control" id="url-form5-c" required th:field="*{senha}">
 		                        </div>
@@ -42,7 +46,13 @@
 		                        	<button type="submit" class="btn btn-primary display-4">Enviar</button>
 		                        </div>
 		                    </div>
-		                    
+		                    	<div th:text="${mensagem}" class="alert-warning" th:if="${mensagem != null}"></div>
+							<div th:if="${#fields.hasErrors('*')}">
+								<ul>
+									<li th:each="erro : ${#fields.errors('*')}" th:text="${erro}" class="alert-danger">
+								</ul>
+							</div>
+
 		                </form>
 		            </div>
 		        </div>

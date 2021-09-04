@@ -28,7 +28,7 @@ public class Professor {
 	@NotBlank(message="A senha deve ser informada!")
 	@Column(length=50, nullable=false)
 	private String senha;
-	@CPF
+	//@CPF
 	@NotBlank(message="O cpf deve ser informado!")
 	@Max(11)
 	@Column(length=11, nullable=false)

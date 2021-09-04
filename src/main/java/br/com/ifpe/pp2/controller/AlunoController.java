@@ -7,6 +7,7 @@ import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,16 +27,16 @@ public class AlunoController {
 	private AlunoDAO alunoDAO;
 	
 	@GetMapping("/paginaInicial")
-	private String exibirPgPrincipal() {
+	private String exibirPgInicial() {
 		return "index";
 	}
 	
-	@GetMapping("/pre")
-	private String exibirPreMatricula(Aluno aluno) {
-		return "prematricula";
+	@GetMapping("/sobre")
+	private String exibirSobre() {
+		return "sobre";
 	}
 	
-	@GetMapping("/login")
+	@GetMapping("/loginAluno")
 	private String exibirLogin() {
 		/*Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String nomeUsuario = auth.getName();
@@ -45,19 +46,14 @@ public class AlunoController {
 		return "login";
 	}
 	
-	@GetMapping("/sobre")
-	private String exibirSobre() {
-		return "sobre";
-	}
-
 	@GetMapping("/alunoPage")
 	private String exibirPageAluno(HttpSession session,Model model) {
 		Aluno aluno =(Aluno)session.getAttribute("usuarioLogado");
 		model.addAttribute("aluno", aluno);
-		return "alunoPage";
+		return "aluno/alunoPage";
 	}
 	
-	@PostMapping("/efetuarLogin")
+	@PostMapping("/efetuarLoginAluno")
 	public String efetuarLogin(Aluno aluno, RedirectAttributes ra, HttpSession session) {
 		aluno = this.alunoDAO.findByCpfAndSenha(aluno.getCpf(), aluno.getSenha());
 		System.out.println("---------------------------------");
@@ -77,11 +73,17 @@ public class AlunoController {
 		return "redirect:/";
 	}
 	
+	//------------inicio pre matricula-------------
+	
+	@GetMapping("/exibirPreCadastroAluno")
+	private String exibirPreCadastroAluno(Aluno aluno) {
+		return "aluno/prematricula";
+	}
 	@PostMapping("/precadastroAluno")
 	private String precadastroAluno(@Valid Aluno aluno, BindingResult result, Model model, RedirectAttributes ra) {
 		if (result.hasErrors()) {
 			System.out.println(result.getAllErrors());
-			return "prematricula";
+			return "exibirPreCadastroAluno";
 		}
 	    if(aluno == null) {         // check if user object is empty
 	    	aluno = new Aluno();    // if user is empty, then instantiate a new user object
@@ -102,16 +104,55 @@ public class AlunoController {
 		}
 	}
 	
+	//-------------fim pre matricula-------------
+	
+	//-------------inicio cadastro aluno-------------
+	@GetMapping("/exibirCadastroAluno")
+	private String exibirCadastroAluno(Aluno aluno) {
+		return "prematricula";
+	}
+	@PostMapping("/cadastroAluno")
+	private String cadastroAluno(@Valid Aluno aluno, BindingResult result, Model model, RedirectAttributes ra) {
+		if (result.hasErrors()) {
+			System.out.println(result.getAllErrors());
+			return "aluno/prematricula";
+		}
+	    if(aluno == null) {         // check if user object is empty
+	    	aluno = new Aluno();    // if user is empty, then instantiate a new user object
+	    	model.addAttribute("aluno", aluno);
+	    }
+		try {
+			//transf em service
+			aluno.setIsAtivo(1);
+			this.alunoDAO.save(aluno);
+			// fim transf em service, Controller agr n pode mais ter acesso direto ao DAO.
+			
+			ra.addFlashAttribute("mensagem","Aluno Cadastrado com Sucesso!");
+			return "redirect:/login";
+		}catch (ServiceException e){
+			result.addError(new ObjectError("global",e.getMessage()));
+			e.printStackTrace();
+			return "index";
+		}
+	}
+	//-------------fim cadastro aluno-------------
+	
 	@GetMapping("/editarAluno")
 	public String editarAluno(Integer codigo, Model model) {
 		model.addAttribute("aluno", this.alunoDAO.findById(codigo));
 		return "cliente/cliente-form";
 	}
 	
-	@GetMapping("/removerCliente")
+	@GetMapping("/listarAluno")
+	public String exibirLista(Model model) {
+		model.addAttribute("listaAluno", alunoDAO.findAll(Sort.by("nome")));
+		return "aluno/aluno-list";
+	}
+	
+	@GetMapping("/removerAluno")
 	public String removerCliente(Integer codigo) {
 		this.alunoDAO.findById(codigo);
-		return "redirect:/listarClientes";
+		return "redirect:/listarAlunos";
 	}
 	
 	}

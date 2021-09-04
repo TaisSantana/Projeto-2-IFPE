@@ -8,8 +8,7 @@
 <body>
   
   <div th:replace="header :: navBar"></div>
-<a th:href="@{/aulaPratica/exibirFormCadastrarAulaPratica(id=${aluno.id})}"><span class="mbr-iconfont mobi-mbri-edit mobi-mbri">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span></a>
-                    
+                   
 <section class="features12 cid-sBOzxMKk0D" id="features13-v">
 
     
@@ -20,7 +19,7 @@
                 <div class="card-wrapper">
                     <div class="card-box align-left">
                         <h4 class="card-title mbr-fonts-style mb-4 display-2">
-                            <strong>Bem vindo, Aluno!</strong></h4>
+                            <strong>Bem vindo, th:text="${aluno.nome}"!</strong></h4>
                         <p class="mbr-text mbr-fonts-style mb-4 display-7">
                             Escolha uma das opções ao lado&nbsp;</p>
                         

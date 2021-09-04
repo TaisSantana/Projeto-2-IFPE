@@ -1,5 +1,6 @@
 package br.com.ifpe.pp2.controller;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.ifpe.pp2.classe.Administrador;
+import br.com.ifpe.pp2.classe.Aluno;
 import br.com.ifpe.pp2.dao.AdministradorDAO;
 import br.com.ifpe.pp2.dao.AlunoDAO;
 
@@ -21,8 +23,27 @@ public class AdministradorController {
 	@Autowired
 	private AdministradorDAO administradorDAO;
 
-	@Autowired
-	private AlunoDAO alunoDAO;
+	
+	@GetMapping("/admPage")
+	private String exibirPageAdministrador(HttpSession session,Model model) {
+		Administrador admin =(Administrador)session.getAttribute("usuarioLogado");
+		model.addAttribute("admin", admin);
+		return "administador/admPage";
+	}
+	
+	@PostMapping("/efetuarLoginAdm")
+	public String efetuarLogin(Administrador admin, RedirectAttributes ra, HttpSession session) {
+		admin = this.administradorDAO.findByCpfAndSenha(admin.getCpf(), admin.getSenha());
+		System.out.println("---------------------------------");
+		if (admin != null) {
+			session.setAttribute("usuarioLogado", admin);
+			return "redirect:/admPage";
+		}else {
+			ra.addFlashAttribute("mensagemErro", "Usuário/senha inválidos");
+			return "redirect:/login";
+		}	
+		//return "redirect:/";
+	}
 	
 	@GetMapping("/formCadastrarAdm")
 	public String formCadastrarAdmin(Administrador admin, Model model) {
@@ -43,7 +64,7 @@ public class AdministradorController {
 	@GetMapping("/editarAdm")
 	public String editarAdm(Integer id, Model model) {
 		model.addAttribute("adm", this.administradorDAO.findById(id));
-		return "associados/cadastro-associado";
+		return "/";
 	}
 
 	@GetMapping("/removerAdm")
