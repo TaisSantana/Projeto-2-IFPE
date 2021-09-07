@@ -7,7 +7,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 public class AutorizadorInterceptor implements HandlerInterceptor{
 	
-	private static final String[] RECURSOS_LIVRES = {"/","/precadastroAluno","/assets","/login","/logout","/acesso-negado","/pre","/sobre","/paginaInicial"};
+	private static final String[] RECURSOS_LIVRES = {"/","/precadastroAluno","/assets","/login","/logout","/acesso-negado","/exibirPreCadastroAluno","/exibirFormCadastrarProf","exibirFormCadastrarAdm","/salvarAdm","/sobre","/paginaInicial"};
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {

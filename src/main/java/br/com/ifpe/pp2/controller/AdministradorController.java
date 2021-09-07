@@ -45,9 +45,10 @@ public class AdministradorController {
 		//return "redirect:/";
 	}
 	
-	@GetMapping("/formCadastrarAdm")
+	@GetMapping("/exibirFormCadastrarAdm")
 	public String formCadastrarAdmin(Administrador admin, Model model) {
-		return "cadastrar-admin";
+		model.addAttribute("admin", admin);
+		return "administrador/cadastrar-admin";
 	}
 	
 	@PostMapping("/salvarAdm")
@@ -57,17 +58,22 @@ public class AdministradorController {
 			return formCadastrarAdmin(admin, model);
 		}
 		this.administradorDAO.save(admin);
-		return "redirect:/";
+		return "redirect:/login";
 	}
 		
+	@GetMapping("/listarAdmin")
+	public String exibirLista(Model model) {
+		model.addAttribute("listaAdmin", administradorDAO.findAll());
+		return "administrador/admin-list";
+	}
 	
-	@GetMapping("/editarAdm")
+	@GetMapping("/editarAdmin")
 	public String editarAdm(Integer id, Model model) {
 		model.addAttribute("adm", this.administradorDAO.findById(id));
 		return "/";
 	}
 
-	@GetMapping("/removerAdm")
+	@GetMapping("/removerAdmin")
 	public String removerAdm(Integer id, RedirectAttributes ra) {
 		this.administradorDAO.deleteById(id);	
 		return "/";

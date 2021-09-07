@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.ifpe.pp2.classe.Administrador;
+import br.com.ifpe.pp2.classe.Aluno;
 import br.com.ifpe.pp2.classe.Professor;
 import br.com.ifpe.pp2.dao.ProfessorDAO;
 import net.bytebuddy.asm.Advice.OffsetMapping.Sort;
@@ -22,6 +23,12 @@ public class ProfessorController {
 	@Autowired
 	private ProfessorDAO professorDAO;
 	
+	@GetMapping("/profPage")
+	private String exibirPageAluno(HttpSession session,Model model) {
+		Professor professor =(Professor)session.getAttribute("usuarioLogado");
+		model.addAttribute("professor", professor);
+		return "aluno/alunoPage";
+	}
 	
 	@PostMapping("/efetuarLoginProfessor")
 	public String efetuarLogin(Professor professor, RedirectAttributes ra, HttpSession session) {
@@ -29,7 +36,7 @@ public class ProfessorController {
 		System.out.println("---------------------------------");
 		if (professor != null) {
 			session.setAttribute("usuarioLogado", professor);
-			return "redirect:/admPage";
+			return "redirect:/profPage";
 		}else {
 			ra.addFlashAttribute("mensagemErro", "Usuário/senha inválidos");
 			return "redirect:/login";
@@ -40,7 +47,7 @@ public class ProfessorController {
 	@GetMapping("/listarProfessor")
 	public String exibirLista(Model model) {
 		model.addAttribute("listaProfessor", professorDAO.findAll());
-		return "/";
+		return "professor/prof-list";
 	}
 	
 	@GetMapping("/exibirFormCadastrarProf")
@@ -56,19 +63,19 @@ public class ProfessorController {
 			return exibirFormCadastrarProfessor(professor, model);
 		}
 		this.professorDAO.save(professor);
-		return "redirect:/paginaInicial";
+		return "redirect:/login";
 	}
 
 	
 	
-	@GetMapping("/editarprofessor")
+	@GetMapping("/editarProfessor")
 	public String editarprofessor(Integer id, Model model) {
 		model.addAttribute("professor", this.professorDAO.findById(id));
 		
 		return "redirect:/listarProfessor";
 	}
 
-	@GetMapping("/removerprofessor")
+	@GetMapping("/removerProfessor")
 	public String removerprofessor(Integer id, RedirectAttributes ra) {
 		this.professorDAO.deleteById(id);	
 		return "redirect:/listarProfessor";

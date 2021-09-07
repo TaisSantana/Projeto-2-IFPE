@@ -19,7 +19,7 @@ public class Professor {
 	private Integer id;
 
 	@NotBlank(message="O nome deve ser informado!")
-@Column(length=80, nullable=false)
+	@Column(length=80, nullable=false)
 	private String nome;
 	@NotBlank(message="O email deve ser informado!")
 	@Email

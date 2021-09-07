@@ -36,13 +36,20 @@ public class AlunoController {
 		return "sobre";
 	}
 	
-	@GetMapping("/loginAluno")
-	private String exibirLogin() {
+	@GetMapping("/login")
+	private String exibirLogin(Integer perfil,Model model) {
 		/*Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String nomeUsuario = auth.getName();
 
 		Aluno ususarioASerAlterado = repositorioUsuario.findByUsername(nomeUsuario);
 		model.addAttribute("usuario", ususarioASerAlterado);*/
+		//1-aluno
+		//2-prof
+		//3-adm
+		if (perfil == null) {
+			perfil = 1;
+		}
+		model.addAttribute("perfil", perfil);
 		return "login";
 	}
 	

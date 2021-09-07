@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
@@ -16,7 +17,7 @@ import org.hibernate.validator.constraints.br.CPF;
 public class Administrador {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	
 	@NotBlank(message="O nome deve ser informado!")
 	@Column(length=80, nullable=false)
@@ -26,26 +27,24 @@ public class Administrador {
 	@Column(length=80, nullable=false)
 	private String email;
 	@NotBlank(message="A senha deve ser informada!")
-
 	@Column(length=50, nullable=false)
 	private String senha;
-	@CPF
+	//@CPF
 	@NotBlank(message="O cpf deve ser informado!")
-	@Max(11)
+	@Min(11)
 	@Column(length=11, nullable=false)
 	private String cpf;
-	@NotBlank(message="O endereco deve ser informado!")
 	private Endereco endereco;
 	@NotBlank(message="O telefone deve ser informado!")
 	//@Size(min="", max="", message="")
-	@Column(length=16)
+	//@Column(length=16)
 	//(081)99999-9999
-	@Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{5})[- ]?(\\d{4})$")
+	//@Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{5})[- ]?(\\d{4})$")
 	private String telefone;
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getNome() {

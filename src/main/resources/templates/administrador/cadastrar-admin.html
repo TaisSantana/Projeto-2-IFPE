@@ -11,13 +11,13 @@
 		    <div class="container">
 		        <div class="mbr-section-head">
 		            <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
-		                <strong>Cadastrar Professor</strong></h3>
+		                <strong>Cadastrar Admnistrador</strong></h3>
 		            
 		        </div>
 		        
 		        <div class="row justify-content-center mt-4">
 		            <div class="col-lg-8 mx-auto mbr-form">
-		                <form action="/salvarProf" method="post" th:object="${professor}">
+		                <form action="/salvarAdm" method="post" th:object="${admin}">
 		                    <div class="dragArea row">
 		                    	<input name="id" type="hidden" th:field="*{id}">
 		                        <div class="col-md-6 col-sm-12 form-group" data-for="name">
@@ -30,23 +30,20 @@
 		                            <input name="telefone" type="text" placeholder="Telefone" maxlength="10" data-form-field="telefone" class="form-control" value="" id="name-form5-c" required th:field="*{telefone}">
 		                        </div>
 		                        <div class="col-md-6 col-sm-12 form-group" data-for="cpf">
-		                            <input type="text" name="cpf" placeholder="CPF" maxlength="11" data-form-field="cpf" class="form-control" value="" id="email-form5-c" required th:field="*{cpf}">
-		                        </div>
-		                         <div class="col-md-6 col-sm-12 form-group" data-for="cpf">
-		                            <input type="text" name="categoriaAula" placeholder="categoria Aula" maxlength="11" data-form-field="categoriaAula" class="form-control" value="" required th:field="*{categoriaAula}">
+		                            <input type="text" name="cpf" placeholder="CPF" minlength="11" manlength="11" data-form-field="cpf" class="form-control" value="" id="email-form5-c" required th:field="*{cpf}">
 		                        </div>
 		                        <div class="col-12 form-group" data-for="textarea">
 		                            <input type="password" name="senha" placeholder="Senha" data-form-field="text" class="form-control" id="url-form5-c" required th:field="*{senha}">
 		                        </div>
 		                        <div class="col-12 form-group" data-for="textarea">
-		                            <textarea type="password" placeholder="Confirmar senha" name="confirmarSenha" data-form-field="textarea" class="form-control" id="textarea-form5-c" required></textarea>
+		                            <input type="password" placeholder="Confirmar senha" name="confirmarSenha" data-form-field="textarea" class="form-control" id="textarea-form5-c" required>
 		                        </div>
 		                        
 		                        <div class="col-lg-12 col-md-12 col-sm-12 align-center mbr-section-btn">
 		                        	<button type="submit" class="btn btn-primary display-4">Enviar</button>
 		                        </div>
 		                    </div>
-		                    	<div th:text="${mensagem}" class="alert-warning" th:if="${mensagem != null}"></div>
+		                    <div th:text="${mensagem}" class="alert-warning" th:if="${mensagem != null}"></div>
 							<div th:if="${#fields.hasErrors('*')}">
 								<ul>
 									<li th:each="erro : ${#fields.errors('*')}" th:text="${erro}" class="alert-danger">
