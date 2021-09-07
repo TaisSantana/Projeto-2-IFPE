@@ -116,13 +116,13 @@ public class AlunoController {
 	//-------------inicio cadastro aluno-------------
 	@GetMapping("/exibirCadastroAluno")
 	private String exibirCadastroAluno(Aluno aluno) {
-		return "prematricula";
+		return "aluno/cadastrar-aluno";
 	}
 	@PostMapping("/cadastroAluno")
 	private String cadastroAluno(@Valid Aluno aluno, BindingResult result, Model model, RedirectAttributes ra) {
 		if (result.hasErrors()) {
 			System.out.println(result.getAllErrors());
-			return "aluno/prematricula";
+			return "aluno/cadastrar-aluno";
 		}
 	    if(aluno == null) {         // check if user object is empty
 	    	aluno = new Aluno();    // if user is empty, then instantiate a new user object
@@ -145,9 +145,9 @@ public class AlunoController {
 	//-------------fim cadastro aluno-------------
 	
 	@GetMapping("/editarAluno")
-	public String editarAluno(Integer codigo, Model model) {
-		model.addAttribute("aluno", this.alunoDAO.findById(codigo));
-		return "cliente/cliente-form";
+	public String editarAluno(Integer id, Model model) {
+		model.addAttribute("aluno", this.alunoDAO.findById(id));
+		return "aluno/cadastrar-aluno";
 	}
 	
 	@GetMapping("/listarAluno")
@@ -157,9 +157,9 @@ public class AlunoController {
 	}
 	
 	@GetMapping("/removerAluno")
-	public String removerCliente(Integer codigo) {
-		this.alunoDAO.findById(codigo);
-		return "redirect:/listarAlunos";
+	public String removerCliente(Integer id) {
+		this.alunoDAO.deleteById(id);
+		return "redirect:/listarAluno";
 	}
 	
 	}

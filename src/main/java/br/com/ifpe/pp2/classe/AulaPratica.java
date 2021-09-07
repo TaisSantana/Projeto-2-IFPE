@@ -2,7 +2,7 @@ package br.com.ifpe.pp2.classe;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-
+import java.util.Date;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -23,16 +24,16 @@ public class AulaPratica {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
-	//@DateTimeFormat(pattern="dd-MM-yyyy")
-	private LocalDate data;
-	//@DateTimeFormat(pattern="HH:mm")
-	private LocalTime hora;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date data;
+	@DateTimeFormat(pattern="HH:mm")
+	private Date hora;
 	
-	@NotBlank(message="O professor deve ser informado!")
+	@NotNull(message="O professor deve ser informado!")
 	@ManyToOne
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Professor professor;
-	@NotBlank(message="O aluno deve ser informado!")
+	@NotNull(message="O aluno deve ser informado!")
 	@ManyToOne
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Aluno aluno;
@@ -43,17 +44,16 @@ public class AulaPratica {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-	public LocalDate getData() {
+	public Date getData() {
 		return data;
 	}
-	public void setData(LocalDate data) {
+	public void setData(Date data) {
 		this.data = data;
 	}
-	public LocalTime getHora() {
+	public Date getHora() {
 		return hora;
 	}
-	public void setHora(LocalTime hora) {
+	public void setHora(Date hora) {
 		this.hora = hora;
 	}
 	public Professor getProfessor() {

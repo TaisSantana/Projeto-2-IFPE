@@ -26,7 +26,6 @@ import br.com.ifpe.pp2.dao.AulaPraticaDAO;
 
 //alteta tds rotas da classe, antes tem q ter /aulaPratica
 @Controller
-@RequestMapping("/aulaPratica")
 public class AulaPraticaController {
 	@Autowired
 	private ProfessorDAO professorDAO;
@@ -35,10 +34,50 @@ public class AulaPraticaController {
 	@Autowired
 	private AulaPraticaDAO aulaPraticaDAO;
 	
+	
+	@GetMapping("/exibirFormCadastrarAulaPratica")
+	public String exibirFormCadastrarAulaPratica(AulaPratica aulaPratica, Model model) {
+		model.addAttribute("listaProf", professorDAO.findAll(Sort.by("nome")));
+		model.addAttribute("listaAluno",alunoDAO.findAll(Sort.by("nome")));
+		return "aulaPratica/cadastrar-aulaPratica";
+	}
+	
+	@PostMapping("/salvarAulaPratica")
+	private String salvarAulaPratica(@Valid AulaPratica aula, Aluno aluno, Professor professor, BindingResult result, Model model, RedirectAttributes ra) {
+		if (result.hasErrors()) {
+			return exibirFormCadastrarAulaPratica(aula, model);
+		}
+		aula.setAluno(aluno);
+		aula.setProfessor(professor);
+		this.aulaPraticaDAO.save(aula);
+		return "redirect:/listarAulasPraticas";
+	}	
+	
 	@GetMapping("/listarAulasPraticas")
 	public String exibirLista(Model model) {
 		model.addAttribute("listaAulas", this.aulaPraticaDAO.findAll(Sort.by("data")));
 		return "aulaPratica/aulaPratica-list";
+	}
+	
+	@GetMapping("/editarAulaPratica")
+	public String editarAulaPratica(Integer id, Model model) {
+		model.addAttribute("aula", this.aulaPraticaDAO.findById(id));
+		model.addAttribute("listaProf", professorDAO.findAll(Sort.by("nome")));
+		model.addAttribute("listaAluno",alunoDAO.findAll(Sort.by("nome")));
+		return "aulaPratica/cadastrar-aulaPratica";
+	}
+	
+	@GetMapping("/removerAulaPratica")
+	public String removerAulaPratica(Integer id, RedirectAttributes ra) {
+		this.aulaPraticaDAO.deleteById(id);	
+		return "redirect:/listarAulasPraticas";
+	}
+//-------------------------------------------POR ALUNO
+
+	@GetMapping("/removerAulaPraticaPorAluno")
+	public String removerAulaPraticaPorAluno(Integer id, RedirectAttributes ra) {
+		this.aulaPraticaDAO.deleteById(id);	
+		return "redirect:/listarAulasPraticasPorAluno";
 	}
 	@GetMapping("/listarAulasPraticasPorAluno")
 	public String exibirLista(Model model, Integer id) {
@@ -55,41 +94,4 @@ public class AulaPraticaController {
 		return "aulaPratica/agendamentoAulaPraticaPorAluno";
 	}
 	
-	@GetMapping("/exibirFormCadastrarAulaPratica")
-	public String exibirFormCadastrarAulaPratica(Integer id, AulaPratica aula, Model model) {
-		model.addAttribute("listaProf", professorDAO.findAll(Sort.by("nome")));
-		model.addAttribute("listaAluno",alunoDAO.findAll(Sort.by("nome")));
-		return "aulaPratica/agendamentoAulaPratica";
-	}
-	
-	
-	@PostMapping("/salvarAulaPratica")
-	private String salvarAulaPratica(@Valid AulaPratica aula, Aluno aluno, Professor professor, Integer id, BindingResult result, Model model, RedirectAttributes ra) {
-		if (result.hasErrors()) {
-			//return exibirFormCadastrarAulaPratica(id, aula, model);
-		}
-		aula.setAluno(aluno);
-		aula.setProfessor(professor);
-		this.aulaPraticaDAO.save(aula);
-		return "redirect:/listarAulasPraticasPorAluno";
-	}	
-	
-	@GetMapping("/editarAulaPratica")
-	public String editarAulaPratica(Integer id, Model model) {
-		model.addAttribute("aula", this.aulaPraticaDAO.findById(id));
-		model.addAttribute("listaProf", professorDAO.findAll(Sort.by("nome")));
-		return "aulaPratica/agendamentoAulaPratica";
-	}
-
-	@GetMapping("/removerAulaPraticaPorAluno")
-	public String removerAulaPraticaPorAluno(Integer id, RedirectAttributes ra) {
-		this.aulaPraticaDAO.deleteById(id);	
-		return "redirect:/listarAulasPraticasPorAluno";
-	}
-	
-	@GetMapping("/removerAulaPratica")
-	public String removerAulaPratica(Integer id, RedirectAttributes ra) {
-		this.aulaPraticaDAO.deleteById(id);	
-		return "redirect:/listarAulasPraticas";
-	}
 }

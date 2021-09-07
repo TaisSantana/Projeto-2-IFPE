@@ -29,6 +29,7 @@
 					<th>Email</th>
 					<th>Cpf</th>
 					<th>Categoria</th>
+					<th>Ativo</th>
 					
 					<th>Acões</th>
 				</tr>
@@ -39,7 +40,10 @@
 				<td th:text="${al.email}"></td>
 				<td th:text="${al.cpf}"></td>
 				<td th:text="${al.categoriaCarteira} ?: 'não declarada'"></td>
-				
+				<td>
+					<span th:if="${al.isAtivo == 1}">Sim</span>
+    				<span th:unless="${al.isAtivo == 0}">Não</span>
+				</td>
 				<!--<td>
 					<a th:href="@{/verListaConvidadosporAssociado(id=${assoc.id})}">
 						Ver Convidados Associados

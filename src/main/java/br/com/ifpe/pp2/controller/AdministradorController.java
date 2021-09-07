@@ -70,12 +70,12 @@ public class AdministradorController {
 	@GetMapping("/editarAdmin")
 	public String editarAdm(Integer id, Model model) {
 		model.addAttribute("adm", this.administradorDAO.findById(id));
-		return "/";
+		return "/listarAdmin";
 	}
 
 	@GetMapping("/removerAdmin")
 	public String removerAdm(Integer id, RedirectAttributes ra) {
 		this.administradorDAO.deleteById(id);	
-		return "/";
+		return "/listarAdmin";
 	}
 }
