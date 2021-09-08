@@ -23,24 +23,29 @@ public class AdministradorController {
 	@Autowired
 	private AdministradorDAO administradorDAO;
 
+	@GetMapping("/loginAdmin")
+	private String exibirLogin(Integer perfil,Model model) {
+		return "administrador/login";
+	} 
 	
-	@GetMapping("/admPage")
+	@GetMapping("/adminPage")
 	private String exibirPageAdministrador(HttpSession session,Model model) {
 		Administrador admin =(Administrador)session.getAttribute("usuarioLogado");
 		model.addAttribute("admin", admin);
-		return "administador/admPage";
+		return "administrador/admPage";
 	}
 	
-	@PostMapping("/efetuarLoginAdm")
+	@PostMapping("/efetuarLoginAdmin")
 	public String efetuarLogin(Administrador admin, RedirectAttributes ra, HttpSession session) {
 		admin = this.administradorDAO.findByCpfAndSenha(admin.getCpf(), admin.getSenha());
 		System.out.println("---------------------------------");
 		if (admin != null) {
 			session.setAttribute("usuarioLogado", admin);
-			return "redirect:/admPage";
+			System.out.println("----------------------settou var usulogado----------");
+			return "redirect:/adminPage";
 		}else {
 			ra.addFlashAttribute("mensagemErro", "Usuário/senha inválidos");
-			return "redirect:/login";
+			return "redirect:/loginAdmin";
 		}	
 		//return "redirect:/";
 	}
@@ -58,7 +63,7 @@ public class AdministradorController {
 			return formCadastrarAdmin(admin, model);
 		}
 		this.administradorDAO.save(admin);
-		return "redirect:/login";
+		return "redirect:/listarAdmin";
 	}
 		
 	@GetMapping("/listarAdmin")

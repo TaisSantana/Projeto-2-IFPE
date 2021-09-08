@@ -23,11 +23,16 @@ public class ProfessorController {
 	@Autowired
 	private ProfessorDAO professorDAO;
 	
+	@GetMapping("/loginProfessor")
+	private String exibirLogin(Integer perfil,Model model) {
+		return "professor/login";
+	} 
+	
 	@GetMapping("/profPage")
-	private String exibirPageAluno(HttpSession session,Model model) {
+	private String exibirPageProfessor(HttpSession session,Model model) {
 		Professor professor =(Professor)session.getAttribute("usuarioLogado");
 		model.addAttribute("professor", professor);
-		return "aluno/alunoPage";
+		return "professor/professorPage";
 	}
 	
 	@PostMapping("/efetuarLoginProfessor")
@@ -39,7 +44,7 @@ public class ProfessorController {
 			return "redirect:/profPage";
 		}else {
 			ra.addFlashAttribute("mensagemErro", "Usuário/senha inválidos");
-			return "redirect:/login";
+			return "redirect:/listarProfessor";
 		}	
 		//return "redirect:/";
 	}

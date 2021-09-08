@@ -18,42 +18,35 @@
                     <div class="card-box align-left">
                         <h4 class="card-title mbr-fonts-style mb-4 display-2">
                             <strong>Bem vindo Professor!</strong></h4>
+                            
                         <p class="mbr-text mbr-fonts-style mb-4 display-7">
                             Escolha uma das opções ao lado</p>
-                        <div class="mbr-section-btn"><a class="btn btn-primary display-4" href="page16.html">Meu Perfil</a></div>
+                        
                     </div>
                 </div>
             </div>
             <div class="col-12 col-lg-6">
                 <div class="item mbr-flex">
                     <div class="icon-box">
-                        <a th:href="@{/aulaPratica/agendarAula(codigo=${usuarioLogado.id},perfil=2)}"><span class="mbr-iconfont mobi-mbri-video-play mobi-mbri"></span></a>
+                        <a th:href="@{/exibirFormCadastrarAulaPratica}"><span class="mbr-iconfont mobi-mbri-video-play mobi-mbri"></span></a>
                     </div>
                     <div class="text-box">
                         <h4 class="icon-title mbr-black mbr-fonts-style display-7">
                             <strong>Adicionar Aulas</strong></h4>
-                        <h5 class="icon-text mbr-black mbr-fonts-style display-4">Adicione Aulas</h5>
+                        <a th:href="@{/exibirFormCadastrarAulaPratica}" class="icon-text mbr-black mbr-fonts-style display-4">Adicione Aulas</a>
                     </div>
                 </div>
                 <div class="item mbr-flex">
                     <div class="icon-box">
-                        <a href="page18.html"><span class="mbr-iconfont mobi-mbri-edit mobi-mbri"></span></a>
+                        <a href="/listarAulasPraticas"><span class="mbr-iconfont mobi-mbri-edit mobi-mbri"></span></a>
                     </div>
                     <div class="text-box">
                         <h4 class="icon-title mbr-black mbr-fonts-style display-7">
                             <strong>Aulas Agendadas</strong></h4>
-                        <h5 class="icon-text mbr-black mbr-fonts-style display-4">Grade de aulas&nbsp;</h5>
+                        <a href="/listarAulasPraticas" class="icon-text mbr-black mbr-fonts-style display-4">Grade de aulas</a>
                     </div>
                 </div>
-                <div class="item mbr-flex">
-                    <div class="icon-box">
-                        <a href="page16.html"><span class="mbr-iconfont mobi-mbri-user mobi-mbri" style="color: rgb(250, 250, 250); fill: rgb(250, 250, 250); font-size: 1px;"></span></a>
-                    </div>
-                    <div class="text-box">
-                        <h4 class="icon-title mbr-black mbr-fonts-style display-7"></h4>
-                        <h5 class="icon-text mbr-black mbr-fonts-style display-4"></h5>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </div>

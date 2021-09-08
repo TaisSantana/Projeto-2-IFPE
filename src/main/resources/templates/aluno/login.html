@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html  >
+<head th:replace="header :: headerBlock">
+	<style type="text/css"></style>
+</head>
+<body>
+<div th:replace="header :: navBar2"></div>
+	<br/><br/>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-12">
+                <div class="image-wrapper">
+                    <img class="w-100" src="assets/images/mbr-1414x943.jpg">
+                </div>
+            </div>
+            <div class="col-lg-5 offset-lg-1 mbr-form">
+
+            	<b><div th:if="${mensagemErro}" th:text="${mensagemErro}"></div></b>
+                <form id="formLogin" action="/efetuarLogin" method="post" th:object="${aluno}"> 
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <h1 class="mbr-section-title mb-4 display-2"><strong>Login
+                            <td th:switch="${perfil}">
+							    <span th:case="'3'"><strong>Administrador</strong></span>
+							    <span th:case="'2'"><strong>Professor</strong></span>
+							    <span th:case="*"><strong>Aluno</strong></span>
+							</td>
+						</strong></h1>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <p class="mbr-text mbr-fonts-style mb-4 display-7">Informe seu cpf e senha</p>
+                        </div>
+                        <div data-for="cpf" class="col-lg-12 col-md col-sm-12 form-group">
+                            <input type="text" name="cpf" placeholder="CPF" data-form-field="cpf" class="form-control" id="name-form3-h" required>
+                        </div>
+                        <div class="col-lg-12 col-md col-sm-12 form-group" data-for="senha">
+                            <input type="password" name="senha" placeholder="Senha" data-form-field="senha" class="form-control" id="email-form3-h" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-sm w-100">Entrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<section class="content11 cid-sBLLoKmkqk" id="content11-j">
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 col-lg-10">
+               <div class="mbr-section-btn align-center">
+               		<a class="btn btn-primary display-4" href="/login">ALUNO</a> 
+               		<a class="btn btn-primary display-4" href="/loginProfessor">PROFESSOR</a> 
+               		<a class="btn btn-primary display-4" href="/loginAdmin">ADMINISTRADOR</a> 
+               		<!--<a class="btn btn-black display-4" href="page7.html">Recuperar Senha</a>-->
+               </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div th:replace="header :: footer"></div>
+</body>
+</html>

@@ -18,9 +18,9 @@
                 <div class="card-wrapper">
                     <div class="card-box align-left">
                         <h4 class="card-title mbr-fonts-style mb-4 display-2">
-                            <strong>Bem vindo, ${usuarioLogado.nome}!</strong></h4>
+                            <strong>Bem vindo, Administrador!</strong></h4>
                         <p class="mbr-text mbr-fonts-style mb-4 display-7">
-                            Escolha uma das opções ao lado&nbsp;</p>
+                            Escolha uma das opções ao lado</p>
                         <div class="mbr-section-btn"><a class="btn btn-white-outline display-4" href="page8.html"></a></div>
                     </div>
                 </div>
@@ -28,12 +28,12 @@
             <div class="col-12 col-lg-6">
             	<div class="item mbr-flex">
                     <div class="icon-box">
-                        <a th:href="@{/aulaPratica/agendarAula(codigo=${usuarioLogado.id},perfil=3)}"><span class="mbr-iconfont mobi-mbri-edit mobi-mbri"></span></a>
+                        <a th:href="@{/exibirFormCadastrarAulaPratica}"><span class="mbr-iconfont mobi-mbri-edit mobi-mbri"></span></a>
                     </div>
                     <div class="text-box">
                         <h4 class="icon-title mbr-black mbr-fonts-style display-7">
                             <strong>Agendamento</strong></h4>
-                        <h5 class="icon-text mbr-black mbr-fonts-style display-4">Faça o agendamento de suas aulas praticas.</h5>
+                        <a th:href="@{/exibirFormCadastrarAulaPratica}" class="icon-text mbr-black mbr-fonts-style display-4">Faça o agendamento de aulas praticas.</a>
                     </div>
                 </div>
                 
@@ -44,16 +44,22 @@
                     </div>
                     <div class="text-box">
                         <h4 class="icon-title mbr-black mbr-fonts-style display-7"><div><strong>Autorizar Pré-matrícula</strong></div></h4>
-                        <h5 class="icon-text mbr-black mbr-fonts-style display-4">autorizar Pré-matrícula</h5>
+                        <h5 class="icon-text mbr-black mbr-fonts-style display-4">Autorizar</h5>
                     </div>
                 </div>
                 <div class="item mbr-flex">
-                    <div class="icon-box">
-                        <a href="page22.html"><span class="mbr-iconfont mobi-mbri-users mobi-mbri"></span></a>
-                    </div>
+                   
                     <div class="text-box">
-                        <h4 class="icon-title mbr-black mbr-fonts-style display-7"><strong>Usuário</strong></h4>
-                        <h5 class="icon-text mbr-black mbr-fonts-style display-4">Criar acesso Professor/Aluno</h5>
+                        <ul class="icon-title mbr-black mbr-fonts-style display-7"><strong>Usuários</strong></ul>
+                        <li><a href="/exibirCadastroAluno" class="icon-text mbr-black mbr-fonts-style display-4">Criar acesso Aluno</a></li>
+                        
+                        <li><a href="/listarAluno" class="icon-text mbr-black mbr-fonts-style display-4">Listar Alunos</a></li>
+                        <li><a href="/exibirFormCadastrarProf" class="icon-text mbr-black mbr-fonts-style display-4">Criar acesso Professor</a></li>
+                        
+                        <li><a href="/listarProfessor" class="icon-text mbr-black mbr-fonts-style display-4">Listar Professores</a></li>
+                        <li><a href="/exibirFormCadastrarAdm" class="icon-text mbr-black mbr-fonts-style display-4">Criar acesso Administrador</a></li>
+                        
+                        <li><a href="/listarAdmin" class="icon-text mbr-black mbr-fonts-style display-4">Listar Administradores</a></li>
                     </div>
                 </div>
                 <div class="item mbr-flex">
@@ -61,8 +67,8 @@
                         <a href="page21.html"><span class="mbr-iconfont mobi-mbri-contact-form mobi-mbri"></span></a>
                     </div>
                     <div class="text-box">
-                        <h4 class="icon-title mbr-black mbr-fonts-style display-7"><strong>Registrar aulas</strong></h4>
-                        <h5 class="icon-text mbr-black mbr-fonts-style display-4">Definir horários das aulas praticas</h5>
+                        <h4 class="icon-title mbr-black mbr-fonts-style display-7"><strong>Aulas Práticas</strong></h4>
+                        <a th:href="@{/exibirFormCadastrarAulaPratica}" class="icon-text mbr-black mbr-fonts-style display-4">Cadastrar aulas praticas</a>
                     </div>
                 </div>
             </div>

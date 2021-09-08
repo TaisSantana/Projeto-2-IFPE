@@ -46,11 +46,11 @@ public class AlunoController {
 		//1-aluno
 		//2-prof
 		//3-adm
-		if (perfil == null) {
+		/*if (perfil == null) {
 			perfil = 1;
 		}
-		model.addAttribute("perfil", perfil);
-		return "login";
+		model.addAttribute("perfil", perfil);*/
+		return "aluno/login";
 	}
 	
 	@GetMapping("/alunoPage")
@@ -60,7 +60,7 @@ public class AlunoController {
 		return "aluno/alunoPage";
 	}
 	
-	@PostMapping("/efetuarLoginAluno")
+	@PostMapping("/efetuarLogin")
 	public String efetuarLogin(Aluno aluno, RedirectAttributes ra, HttpSession session) {
 		aluno = this.alunoDAO.findByCpfAndSenha(aluno.getCpf(), aluno.getSenha());
 		System.out.println("---------------------------------");
